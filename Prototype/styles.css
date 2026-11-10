@@ -1,0 +1,39 @@
+
+body {
+  font-family: Arial, sans-serif;
+  max-width: 1000px;
+  margin: 24px auto;
+  padding: 0 16px;
+  line-height: 1.4;
+}
+
+[hidden] { display: none; }
+h2 { margin-top: 28px; }
+label { display: block; margin-top: 10px; }
+input, select { display: block; padding: 5px; max-width: 100%; }
+button { padding: 5px 10px; margin-top: 10px; cursor: pointer; }
+#account-error, #class-error { min-height: 1em; }
+
+#calendar-controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+#calendar-controls button { margin: 0; }
+#month-title { min-width: 130px; text-align: center; }
+.calendar-scroll { overflow-x: auto; margin-top: 12px; }
+#calendar { width: 100%; min-width: 720px; border-collapse: collapse; table-layout: fixed; }
+#calendar th, #calendar td { border: 1px solid #999; padding: 6px; }
+#calendar th { text-align: left; }
+#calendar td { vertical-align: top; height: 95px; overflow-wrap: anywhere; }
+.calendar-date { display: block; margin-bottom: 6px; }
+.calendar-entry { margin: 5px 0; font-size: 13px; }
+.calendar-entry button { margin: 0 0 0 3px; padding: 0 3px; }
+.calendar-entry input { display: inline; margin: 0 3px 0 0; }
+.calendar-entry.done .entry-text { text-decoration: line-through; }
+
+/* Small adjustments for the assignment task list. */
+.assignment-tasks-item { margin-bottom: 18px; }
+.assignment-tasks-item h3 { margin-bottom: 4px; }
+.assignment-tasks-item p { margin: 4px 0; }
+.assignment-tasks-item ul { margin: 6px 0; }
+.task-label { display: inline; margin: 0; }
+.task-label input { display: inline; }
+.task-done { text-decoration: line-through; }
+.subtask-form input { display: inline-block; }
