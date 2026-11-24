@@ -1,39 +1,306 @@
 
 body {
   font-family: Arial, sans-serif;
-  max-width: 1000px;
-  margin: 24px auto;
-  padding: 0 16px;
-  line-height: 1.4;
+  max-width: 1100px;
+  margin: 28px auto;
+  padding: 0 20px;
+  line-height: 1.45;
+  color: #222;
 }
 
-[hidden] { display: none; }
-h2 { margin-top: 28px; }
-label { display: block; margin-top: 10px; }
-input, select { display: block; padding: 5px; max-width: 100%; }
-button { padding: 5px 10px; margin-top: 10px; cursor: pointer; }
-#account-error, #class-error { min-height: 1em; }
+[hidden] {
+  display: none !important;
+}
 
-#calendar-controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-#calendar-controls button { margin: 0; }
-#month-title { min-width: 130px; text-align: center; }
-.calendar-scroll { overflow-x: auto; margin-top: 12px; }
-#calendar { width: 100%; min-width: 720px; border-collapse: collapse; table-layout: fixed; }
-#calendar th, #calendar td { border: 1px solid #999; padding: 6px; }
-#calendar th { text-align: left; }
-#calendar td { vertical-align: top; height: 95px; overflow-wrap: anywhere; }
-.calendar-date { display: block; margin-bottom: 6px; }
-.calendar-entry { margin: 5px 0; font-size: 13px; }
-.calendar-entry button { margin: 0 0 0 3px; padding: 0 3px; }
-.calendar-entry input { display: inline; margin: 0 3px 0 0; }
-.calendar-entry.done .entry-text { text-decoration: line-through; }
+h1 {
+  margin: 0 0 20px;
+  font-size: 26px;
+}
 
-/* Small adjustments for the assignment task list. */
-.assignment-tasks-item { margin-bottom: 18px; }
-.assignment-tasks-item h3 { margin-bottom: 4px; }
-.assignment-tasks-item p { margin: 4px 0; }
-.assignment-tasks-item ul { margin: 6px 0; }
-.task-label { display: inline; margin: 0; }
-.task-label input { display: inline; }
-.task-done { text-decoration: line-through; }
-.subtask-form input { display: inline-block; }
+h2 {
+  margin: 0 0 18px;
+  font-size: 21px;
+}
+
+h3 {
+  margin: 0 0 12px;
+  font-size: 17px;
+}
+
+p {
+  margin: 10px 0;
+}
+
+.small-text {
+  font-size: 13px;
+  color: #555;
+}
+
+button, input, select {
+  font: inherit;
+}
+
+button {
+  padding: 7px 12px;
+  border: 1px solid #999;
+  background: #f5f5f5;
+  color: #222;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #eaeaea;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid #555;
+  outline-offset: 2px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input, select {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 7px;
+  border: 1px solid #aaa;
+  background: white;
+}
+
+form > button {
+  margin-top: 14px;
+}
+
+#account-error, #class-error {
+  min-height: 1em;
+  color: #555;
+}
+
+.account-section {
+  max-width: 390px;
+}
+
+.account-section form {
+  margin-bottom: 12px;
+}
+
+.account-section label {
+  margin-top: 13px;
+}
+
+.account-section #switch-form {
+  margin-top: 4px;
+}
+
+.account-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 15px;
+}
+
+/* Dashboard tabs */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  border-bottom: 1px solid #aaa;
+  margin-bottom: 25px;
+}
+
+.tabs button {
+  border: 0;
+  border-bottom: 3px solid transparent;
+  padding: 11px 17px 10px;
+  background: transparent;
+}
+
+.tabs button[aria-selected="true"] {
+  border-bottom-color: #333;
+  font-weight: bold;
+}
+
+.tabs button:hover {
+  background: #f4f4f4;
+}
+
+.tab-panel {
+  min-height: 280px;
+}
+
+/* Calendar */
+#calendar-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 13px;
+}
+
+#month-title {
+  min-width: 135px;
+  text-align: center;
+}
+
+.calendar-scroll {
+  overflow-x: auto;
+}
+
+#calendar {
+  width: 100%;
+  min-width: 750px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+#calendar th, #calendar td {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+#calendar th {
+  background: #f3f3f3;
+  text-align: left;
+  font-weight: normal;
+}
+
+#calendar td {
+  vertical-align: top;
+  height: 106px;
+  overflow-wrap: anywhere;
+}
+
+.calendar-date {
+  display: block;
+  margin-bottom: 9px;
+}
+
+.calendar-entry {
+  font-size: 12px;
+  line-height: 1.3;
+  padding: 5px 3px;
+  border-top: 1px solid #e2e2e2;
+  margin-top: 3px;
+}
+
+.calendar-entry button {
+  margin-left: 4px;
+  padding: 0 5px;
+}
+
+.calendar-entry input {
+  display: inline;
+  width: auto;
+  vertical-align: middle;
+}
+
+.calendar-entry.done .entry-text {
+  text-decoration: line-through;
+}
+
+.deadlines-section {
+  margin-top: 27px;
+}
+
+.deadlines-section li {
+  margin-bottom: 5px;
+}
+
+/* Assignment tasks */
+.assignment-tasks-item {
+  border-bottom: 1px solid #ddd;
+  padding: 0 0 20px;
+  margin-bottom: 22px;
+}
+
+.assignment-tasks-item p {
+  margin: 5px 0 10px;
+}
+
+.assignment-tasks-item ul {
+  margin: 10px 0 13px;
+  padding-left: 24px;
+}
+
+.assignment-tasks-item li {
+  margin: 7px 0;
+}
+
+.task-label {
+  display: inline;
+}
+
+.task-label input {
+  display: inline;
+  width: auto;
+  margin-right: 6px;
+}
+
+.task-done {
+  text-decoration: line-through;
+}
+
+.subtask-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.subtask-form input {
+  width: min(300px, 100%);
+}
+
+.subtask-form button {
+  margin-top: 0;
+}
+
+/* Add item forms */
+.add-section {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 24px;
+  margin-bottom: 27px;
+}
+
+.form-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 680px;
+  gap: 14px 20px;
+}
+
+@media (max-width: 600px) {
+  body {
+    margin-top: 18px;
+    padding: 0 12px;
+  }
+
+  h1 {
+    font-size: 23px;
+  }
+
+  .tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  .tabs button {
+    padding: 10px 9px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  .form-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .account-bar {
+    align-items: flex-start;
+  }
+}
