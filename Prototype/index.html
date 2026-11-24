@@ -14,30 +14,22 @@
 
     <section id="account-section" class="account-section">
       <h2 id="account-heading">Log in</h2>
-
       <form id="login-form">
         <label for="login-email">Email</label>
-        <input type="email" id="login-email" required>
-
+        <input id="login-email" type="email" required>
         <label for="login-password">Password</label>
-        <input type="password" id="login-password" required>
-
+        <input id="login-password" type="password" required>
         <button type="submit">Log in</button>
       </form>
-
       <form id="signup-form" hidden>
         <label for="signup-name">Name</label>
-        <input type="text" id="signup-name" required>
-
+        <input id="signup-name" type="text" required>
         <label for="signup-email">Email</label>
-        <input type="email" id="signup-email" required>
-
+        <input id="signup-email" type="email" required>
         <label for="signup-password">Password (at least 6 characters)</label>
-        <input type="password" id="signup-password" minlength="6" required>
-
+        <input id="signup-password" type="password" minlength="6" required>
         <button type="submit">Sign up</button>
       </form>
-
       <p id="account-error" role="status"></p>
       <button id="switch-form" type="button">Create an account</button>
       <p class="small-text">Demo account: demo@student.hull.ac.uk / Password123</p>
@@ -50,39 +42,38 @@
       </div>
 
       <nav class="tabs" role="tablist" aria-label="Dashboard sections">
-        <button id="tab-calendar" role="tab" aria-controls="panel-calendar" aria-selected="true" data-tab="calendar" type="button">Calendar</button>
-        <button id="tab-assignments" role="tab" aria-controls="panel-assignments" aria-selected="false" data-tab="assignments" type="button" tabindex="-1">Assignments</button>
-        <button id="tab-motivation" role="tab" aria-controls="panel-motivation" aria-selected="false" data-tab="motivation" type="button" tabindex="-1">Motivation</button>
-        <button id="tab-add" role="tab" aria-controls="panel-add" aria-selected="false" data-tab="add" type="button" tabindex="-1">Add item</button>
+        <button id="tab-calendar" role="tab" aria-controls="panel-calendar" aria-selected="true" type="button">Calendar</button>
+        <button id="tab-assignments" role="tab" aria-controls="panel-assignments" aria-selected="false" tabindex="-1" type="button">Assignments</button>
+        <button id="tab-motivation" role="tab" aria-controls="panel-motivation" aria-selected="false" tabindex="-1" type="button">Motivation</button>
+        <button id="tab-wellbeing" role="tab" aria-controls="panel-wellbeing" aria-selected="false" tabindex="-1" type="button">Wellbeing</button>
+        <button id="tab-add" role="tab" aria-controls="panel-add" aria-selected="false" tabindex="-1" type="button">Add item</button>
       </nav>
 
       <section id="panel-calendar" class="tab-panel" role="tabpanel" aria-labelledby="tab-calendar">
         <h2>Monthly calendar</h2>
-
         <div id="calendar-controls">
           <button id="previous-month" type="button">Previous</button>
           <strong id="month-title" aria-live="polite"></strong>
           <button id="next-month" type="button">Next</button>
           <button id="current-month" type="button">This month</button>
         </div>
-
+        <div class="calendar-filters" role="group" aria-label="Show calendar entries">
+          <label><input id="filter-classes" type="checkbox" checked> Classes</label>
+          <label><input id="filter-assignments" type="checkbox" checked> Assignments</label>
+          <label><input id="filter-subtasks" type="checkbox" checked> Subtasks</label>
+          <label><input id="filter-personal" type="checkbox" checked> Personal events</label>
+        </div>
         <div class="calendar-scroll">
           <table id="calendar">
             <thead>
               <tr>
-                <th scope="col">Mon</th>
-                <th scope="col">Tue</th>
-                <th scope="col">Wed</th>
-                <th scope="col">Thu</th>
-                <th scope="col">Fri</th>
-                <th scope="col">Sat</th>
-                <th scope="col">Sun</th>
+                <th scope="col">Mon</th><th scope="col">Tue</th><th scope="col">Wed</th>
+                <th scope="col">Thu</th><th scope="col">Fri</th><th scope="col">Sat</th><th scope="col">Sun</th>
               </tr>
             </thead>
             <tbody id="calendar-body"></tbody>
           </table>
         </div>
-
         <div class="deadlines-section">
           <h3>Upcoming deadlines</h3>
           <ul id="upcoming-deadlines"></ul>
@@ -92,6 +83,18 @@
       <section id="panel-assignments" class="tab-panel" role="tabpanel" aria-labelledby="tab-assignments" hidden>
         <h2>Assignment tasks</h2>
         <div id="assignment-tasks"></div>
+
+        <section class="notes-section">
+          <h3>Study notes</h3>
+          <form id="note-form">
+            <label for="note-module">Module or assignment</label>
+            <input id="note-module" type="text" required>
+            <label for="note-text">Note</label>
+            <textarea id="note-text" rows="3" required></textarea>
+            <button type="submit">Add note</button>
+          </form>
+          <ul id="notes-list"></ul>
+        </section>
       </section>
 
       <section id="panel-motivation" class="tab-panel" role="tabpanel" aria-labelledby="tab-motivation" hidden>
@@ -100,57 +103,110 @@
         <p id="user-exp">0 EXP</p>
         <p id="level-progress">0/100 EXP towards next level</p>
         <p class="small-text">Complete a subtask for 10 EXP or an assignment for 30 EXP.</p>
-
         <h3>Achievements</h3>
         <ul id="achievements"></ul>
+
+        <h3>Weekly goal</h3>
+        <form id="weekly-goal-form" class="small-form">
+          <label for="weekly-goal">Subtasks to complete each week</label>
+          <input id="weekly-goal" type="number" min="1" max="30" value="5" required>
+          <button type="submit">Save goal</button>
+        </form>
+        <p id="weekly-progress"></p>
+
+        <h3>Study timer</h3>
+        <p id="timer-display" role="timer">25:00</p>
+        <div class="timer-buttons">
+          <button id="timer-start" type="button">Start</button>
+          <button id="timer-pause" type="button" disabled>Pause</button>
+          <button id="timer-reset" type="button">Reset</button>
+        </div>
+        <p id="timer-message" role="status"></p>
+      </section>
+
+      <section id="panel-wellbeing" class="tab-panel" role="tabpanel" aria-labelledby="tab-wellbeing" hidden>
+        <h2>Wellbeing check-in</h2>
+        <form id="wellbeing-form">
+          <p>How are you feeling today?</p>
+          <label class="radio-label"><input type="radio" name="feeling" value="good" required> Good</label>
+          <label class="radio-label"><input type="radio" name="feeling" value="okay"> Okay</label>
+          <label class="radio-label"><input type="radio" name="feeling" value="struggling"> Struggling</label>
+          <button type="submit">Check in</button>
+        </form>
+        <p id="wellbeing-response" role="status"></p>
+        <p id="wellbeing-support" hidden>
+          <a href="https://www.hull.ac.uk/life-at-hull/student-wellbeing-and-inclusion/mental-health-psychological-and-social-wellbeing" target="_blank" rel="noopener noreferrer">University of Hull wellbeing support</a>
+        </p>
+        <h3>University resources</h3>
+        <ul class="resource-list">
+          <li><a href="https://www.hull.ac.uk/life-at-hull/student-wellbeing-and-inclusion" target="_blank" rel="noopener noreferrer">Student wellbeing and inclusion</a></li>
+          <li><a href="https://www.hull.ac.uk/life-at-hull/student-wellbeing-and-inclusion/disability-and-neurodivergence" target="_blank" rel="noopener noreferrer">Disability and neurodivergence support</a></li>
+          <li><a href="https://www.hull.ac.uk/life-at-hull/student-wellbeing-and-inclusion/financial-support" target="_blank" rel="noopener noreferrer">Financial support</a></li>
+          <li><a href="https://libguides.hull.ac.uk/SkillsGuides/" target="_blank" rel="noopener noreferrer">Library study skills guides</a></li>
+          <li><a href="https://www.hull.ac.uk/study/academic-support" target="_blank" rel="noopener noreferrer">Academic support</a></li>
+          <li><a href="https://www.hull.ac.uk/study/careers-support" target="_blank" rel="noopener noreferrer">Careers support</a></li>
+        </ul>
       </section>
 
       <section id="panel-add" class="tab-panel" role="tabpanel" aria-labelledby="tab-add" hidden>
         <h2>Add to calendar</h2>
 
+        <section id="edit-section" class="add-section" hidden>
+          <h3>Edit calendar entry</h3>
+          <form id="edit-class-form" hidden>
+            <div class="form-fields">
+              <div><label for="edit-class-name">Module</label><input id="edit-class-name" required></div>
+              <div><label for="edit-class-day">Day</label>
+                <select id="edit-class-day">
+                  <option>Monday</option><option>Tuesday</option><option>Wednesday</option>
+                  <option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option>
+                </select>
+              </div>
+              <div><label for="edit-class-start">Start time</label><input id="edit-class-start" type="time" required></div>
+              <div><label for="edit-class-end">End time</label><input id="edit-class-end" type="time" required></div>
+              <div><label for="edit-class-first">First date</label><input id="edit-class-first" type="date" required></div>
+              <div><label for="edit-class-last">Last date</label><input id="edit-class-last" type="date" required></div>
+            </div>
+            <button type="submit">Save class</button>
+          </form>
+          <form id="edit-assignment-form" hidden>
+            <div class="form-fields">
+              <div><label for="edit-assignment-name">Assignment</label><input id="edit-assignment-name" required></div>
+              <div><label for="edit-assignment-module">Module</label><input id="edit-assignment-module" required></div>
+              <div><label for="edit-assignment-date">Due date</label><input id="edit-assignment-date" type="date" required></div>
+            </div>
+            <button type="submit">Save assignment</button>
+          </form>
+          <form id="edit-personal-form" hidden>
+            <div class="form-fields">
+              <div><label for="edit-personal-name">Event</label><input id="edit-personal-name" required></div>
+              <div><label for="edit-personal-date">Date</label><input id="edit-personal-date" type="date" required></div>
+              <div><label for="edit-personal-time">Time (optional)</label><input id="edit-personal-time" type="time"></div>
+              <div class="full-width"><label class="checkbox-label"><input id="edit-personal-repeat" type="checkbox"> Repeat every week</label></div>
+              <div id="edit-personal-repeat-fields" hidden><label for="edit-personal-last">Repeat until</label><input id="edit-personal-last" type="date"></div>
+            </div>
+            <button type="submit">Save event</button>
+          </form>
+          <button id="cancel-edit" type="button">Cancel</button>
+          <p id="edit-error" role="status"></p>
+        </section>
+
         <section class="add-section">
           <h3>Class session</h3>
           <form id="class-form">
             <div class="form-fields">
-              <div>
-                <label for="class-name">Module</label>
-                <input id="class-name" type="text" required>
-              </div>
-
-              <div>
-                <label for="class-day">Day of the week</label>
+              <div><label for="class-name">Module</label><input id="class-name" required></div>
+              <div><label for="class-day">Day of the week</label>
                 <select id="class-day">
-                  <option>Monday</option>
-                  <option>Tuesday</option>
-                  <option>Wednesday</option>
-                  <option>Thursday</option>
-                  <option>Friday</option>
-                  <option>Saturday</option>
-                  <option>Sunday</option>
+                  <option>Monday</option><option>Tuesday</option><option>Wednesday</option>
+                  <option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option>
                 </select>
               </div>
-
-              <div>
-                <label for="class-start">Start time</label>
-                <input id="class-start" type="time" required>
-              </div>
-
-              <div>
-                <label for="class-end">End time</label>
-                <input id="class-end" type="time" required>
-              </div>
-
-              <div>
-                <label for="class-first-date">First date</label>
-                <input id="class-first-date" type="date" required>
-              </div>
-
-              <div>
-                <label for="class-last-date">Last date</label>
-                <input id="class-last-date" type="date" required>
-              </div>
+              <div><label for="class-start">Start time</label><input id="class-start" type="time" required></div>
+              <div><label for="class-end">End time</label><input id="class-end" type="time" required></div>
+              <div><label for="class-first-date">First date</label><input id="class-first-date" type="date" required></div>
+              <div><label for="class-last-date">Last date</label><input id="class-last-date" type="date" required></div>
             </div>
-
             <button type="submit">Add class</button>
           </form>
           <p id="class-error" role="status"></p>
@@ -160,22 +216,10 @@
           <h3>Assignment</h3>
           <form id="assignment-form">
             <div class="form-fields">
-              <div>
-                <label for="assignment-name">Assignment</label>
-                <input id="assignment-name" type="text" required>
-              </div>
-
-              <div>
-                <label for="assignment-module">Module</label>
-                <input id="assignment-module" type="text" required>
-              </div>
-
-              <div>
-                <label for="assignment-date">Due date</label>
-                <input id="assignment-date" type="date" required>
-              </div>
+              <div><label for="assignment-name">Assignment</label><input id="assignment-name" required></div>
+              <div><label for="assignment-module">Module</label><input id="assignment-module" required></div>
+              <div><label for="assignment-date">Due date</label><input id="assignment-date" type="date" required></div>
             </div>
-
             <button type="submit">Add assignment</button>
           </form>
         </section>
@@ -184,22 +228,12 @@
           <h3>Personal event</h3>
           <form id="personal-form">
             <div class="form-fields">
-              <div>
-                <label for="personal-name">Event</label>
-                <input id="personal-name" type="text" required>
-              </div>
-
-              <div>
-                <label for="personal-date">Date</label>
-                <input id="personal-date" type="date" required>
-              </div>
-
-              <div>
-                <label for="personal-time">Time (optional)</label>
-                <input id="personal-time" type="time">
-              </div>
+              <div><label for="personal-name">Event</label><input id="personal-name" required></div>
+              <div><label for="personal-date">Date</label><input id="personal-date" type="date" required></div>
+              <div><label for="personal-time">Time (optional)</label><input id="personal-time" type="time"></div>
+              <div class="full-width"><label class="checkbox-label"><input id="personal-repeat" type="checkbox"> Repeat every week</label></div>
+              <div id="personal-repeat-fields" hidden><label for="personal-last">Repeat until</label><input id="personal-last" type="date"></div>
             </div>
-
             <button type="submit">Add event</button>
           </form>
         </section>
